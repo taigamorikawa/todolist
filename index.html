@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ToDoリスト</title>
+    <meta name="description" content="ToDoリスト" />
+    <meta name="author" content="Taiga Morikawa" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <h1>ToDoリスト</h1>
+    <div id="filter">
+        <input type="radio" name="filter" value="all">すべて
+        <input type="radio" name="filter" value="working">作業中
+        <input type="radio" name="filter" value="complete">完了
+    </div>
+    <table id="todoTable">
+        <tr>
+            <th>ID</th>
+            <th>コメント</th>
+            <th>状態</th>
+            <th></th>
+        </tr>
+    </table>
+    <h2>新規タスクの追加</h2>
+    <table>
+        <tr>
+            <td><input id="comment" type="text" /></td>
+            <td><input type="button" onclick="addTodo();" value="追加"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
