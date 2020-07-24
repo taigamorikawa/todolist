@@ -7,6 +7,13 @@
     <meta name="description" content="ToDoリスト" />
     <meta name="author" content="Taiga Morikawa" />
     <script src="script.js"></script>
+
+    <style>
+        thead{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,9 +23,14 @@
         <input type="radio" name="filter" value="working">作業中
         <input type="radio" name="filter" value="complete">完了
     </div>
-    <div id="todoTable">
-        
-    </div>
+    <table id="todoTable">
+        <thead id="todoHeader">
+            <tr>
+                <td>id</td><td>コメント</td><td>状態</td>
+            </tr>
+        </thead>
+        <tbody id="todoBody" />
+    </table>
     <h2>新規タスクの追加</h2>
     <table>
         <tr>

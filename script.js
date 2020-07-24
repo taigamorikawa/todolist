@@ -1,32 +1,19 @@
-let id = 0;
+
+let todoId = 0;
 const todolist = {
     id: 0,
     List: new Array(),
-    displayList: todoDisplay = (divElement) => {
-        const divChild = divElement.firstChild;
-        const table = document.createElement("table");
-
-        const tr = document.createElement("tr");
-        table.appendChild(tr);
-
-        // ヘッダ
-        const th_id = document.createElement("th");
-        tr.appendChild(th_id);
-        th_id.innerText = "ID";
-
-        const th_comment = document.createElement("th");
-        tr.appendChild(th_comment);
-        th_comment.innerText = "コメント";
-
-        const th_status = document.createElement("th");
-        tr.appendChild(th_status);
-        th_status.innerText = "状態";
+    displayList: todoDisplay = (tableElement) => {
+        
+        const tbodyOldElement = document.getElementById("todoBody");
+        const tbodyNewElement = document.createElement("tbody");
+        tbodyNewElement.setAttribute("id","todoBody");
 
         // 内容
         todolist.List.forEach(todo => {
 
             const tr = document.createElement("tr");
-            table.appendChild(tr);
+            tbodyNewElement.appendChild(tr);
 
             const td_id = document.createElement("td");
             tr.appendChild(td_id);
@@ -38,75 +25,53 @@ const todolist = {
 
             const td_status = document.createElement("td");
             tr.appendChild(td_status);
-            td_status.innerText = todo.status;
+            td_status.setAttribute("class", "SwitchableToButton")
+            td_status.innerText = todoStatus[todo.status];
+
+            const td_operation = document.createElement("td");
+            tr.appendChild(td_operation);
+            td_operation.setAttribute("class", "SwitchableToButton operation");
 
         });
 
-        divElement.replaceChild(table, divChild);
+        tableElement.replaceChild(tbodyNewElement, tbodyOldElement);
     }
 }
 
-const addTodo = () => {
-    const divTodoTable = document.getElementById("todoTable");
+const todoStatus = {
+    working: "作業中",
+    complete: "完了"
+}
 
+const addTodo = () => {
+
+    const tableTodoBody = document.getElementById("todoTable");
     const todo = {
-        id: id++,
+        id: todoId++,
         content: document.getElementById("comment").value,
-        status: "作業中"
+        status: "working"
     }
 
     todolist.List.push(todo);
+    todolist.displayList(tableTodoBody);
 
-    const divChild = divTodoTable.firstChild;
-    const table = document.createElement("table");
+    let operations = document.getElementsByClassName("operation");
+    operations = Array.from(operations);//forEachを利用するための処理
+    operations.forEach(element => {
+        element.innerText = "削除";
+    });
 
-    const tr = document.createElement("tr");
-    table.appendChild(tr);
+    let swButtonElements = document.getElementsByClassName("SwitchableToButton");
+    swButtonElements = Array.from(swButtonElements);//forEachを利用するための処理
+    swButtonElements.forEach(element => {
 
-    // ヘッダ
-    const th_id = document.createElement("th");
-    tr.appendChild(th_id);
-    th_id.innerText = "ID";
+        const input = document.createElement("input");
+        input.type = "button";
+        input.value = element.innerText;
+        element.innerText = "";
 
-    const th_comment = document.createElement("th");
-    tr.appendChild(th_comment);
-    th_comment.innerText = "コメント";
-
-    const th_status = document.createElement("th");
-    tr.appendChild(th_status);
-    th_status.innerText = "状態";
-
-    // 内容
-    todolist.List.forEach(todo => {
-
-        const tr = document.createElement("tr");
-        table.appendChild(tr);
-
-        const td_id = document.createElement("td");
-        tr.appendChild(td_id);
-        td_id.innerText = todo.id;
-
-        const td_comment = document.createElement("td");
-        tr.appendChild(td_comment);
-        td_comment.innerText = todo.content;
-
-
-        const td_working = document.createElement("td");
-        tr.appendChild(td_working); 
-        const button_working = document.createElement("input");
-        td_working.appendChild(button_working);
-        button_working.type = "button";
-        button_working.value = todo.status;
-
-
-        const td_delete = document.createElement("td");
-        tr.appendChild(td_delete);
-        const button_delete = document.createElement("input");
-        td_delete.appendChild(button_delete);
-        button_delete.type = "button";
-        button_delete.value = "削除";
+        element.appendChild(input);
 
     });
 
-    divTodoTable.replaceChild(table, divChild);
 };
