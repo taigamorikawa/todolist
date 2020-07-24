@@ -6,7 +6,7 @@
     <title>ToDoリスト</title>
     <meta name="description" content="ToDoリスト" />
     <meta name="author" content="Taiga Morikawa" />
-    <script src="script.js"></script>
+    <script src="todolist-rev.js"></script>
 
     <style>
         thead{
@@ -23,14 +23,17 @@
         <input type="radio" name="filter" value="working">作業中
         <input type="radio" name="filter" value="complete">完了
     </div>
-    <table id="todoTable">
-        <thead id="todoHeader">
+    <div id="todoList">
+    <table id="TodoTable">
+        <thead>
             <tr>
                 <td>id</td><td>コメント</td><td>状態</td>
             </tr>
         </thead>
-        <tbody id="todoBody" />
+        <tbody id="TodoBody">
+        </tbody>
     </table>
+    </div>
     <h2>新規タスクの追加</h2>
     <table>
         <tr>

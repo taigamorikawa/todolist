@@ -4,7 +4,11 @@ const todolist = {
     id: 0,
     List: new Array(),
     displayList: todoDisplay = (tableElement) => {
-        
+
+        //tbodyOldElementが、tableElementの子要素であることが紐づいてない。（現状id指定取得)
+        //todoを表示させたいtable要素(tableElement)の、その子要素であるtbodyを取得する良い方法はないか探している。
+        //getElementsbyTagNameは、戻り値がNodeListになる為、replaceChildが使えない。
+
         const tbodyOldElement = document.getElementById("todoBody");
         const tbodyNewElement = document.createElement("tbody");
         tbodyNewElement.setAttribute("id","todoBody");
@@ -25,12 +29,18 @@ const todolist = {
 
             const td_status = document.createElement("td");
             tr.appendChild(td_status);
-            td_status.setAttribute("class", "SwitchableToButton")
-            td_status.innerText = todoStatus[todo.status];
+            const input_status = document.createElement("input");
+            input_status.type = "button";
+            input_status.value = todoStatus[todo.status];
+            td_status.appendChild(input_status);
 
             const td_operation = document.createElement("td");
             tr.appendChild(td_operation);
             td_operation.setAttribute("class", "SwitchableToButton operation");
+            const input_operation = document.createElement("input");
+            input_operation.type = "button";
+            input_operation.value = "削除";
+            td_operation.appendChild(input_operation);
 
         });
 
@@ -54,24 +64,5 @@ const addTodo = () => {
 
     todolist.List.push(todo);
     todolist.displayList(tableTodoBody);
-
-    let operations = document.getElementsByClassName("operation");
-    operations = Array.from(operations);//forEachを利用するための処理
-    operations.forEach(element => {
-        element.innerText = "削除";
-    });
-
-    let swButtonElements = document.getElementsByClassName("SwitchableToButton");
-    swButtonElements = Array.from(swButtonElements);//forEachを利用するための処理
-    swButtonElements.forEach(element => {
-
-        const input = document.createElement("input");
-        input.type = "button";
-        input.value = element.innerText;
-        element.innerText = "";
-
-        element.appendChild(input);
-
-    });
-
+    
 };
