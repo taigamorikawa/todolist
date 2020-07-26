@@ -7,12 +7,14 @@
     <meta name="description" content="ToDoリスト" />
     <meta name="author" content="Taiga Morikawa" />
     <link rel="shortcut icon" href="fabicon.ico" />
-    <script src="testscript.js"></script>
+    <script src="todolist.class.js"></script>
+    <script src="todolist.js"></script>
 
     <style>
         thead{
             font-size: 1.2em;
             font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
@@ -24,11 +26,18 @@
         <input type="radio" name="filter" value="working">作業中
         <input type="radio" name="filter" value="complete">完了
     </div>
-    <div id="todoList">
-        <table id="TodoTable">
+    <div>
+        <table id="todoTable">
             <thead>
                 <tr>
+<<<<<<< Updated upstream
                     <td>ID</td><td>コメント</td><td>状態</td>
+=======
+                    <td>ID</td>
+                    <td>コメント</td>
+                    <td>状態</td>
+                    <td></td>
+>>>>>>> Stashed changes
                 </tr>
             </thead>
             <tbody id="TodoBody">
