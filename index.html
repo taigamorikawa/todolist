@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <title>ToDoリスト</title>
+    <meta name="description" content="ToDoリスト" />
+    <meta name="author" content="Taiga Morikawa" />
+    <link rel="shortcut icon" href="fabicon.ico" />
+    <script src="todolist.class.js"></script>
+    <script src="todolist.js"></script>
+
+    <style>
+        thead{
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ToDoリスト</h1>
+    <div id="filter">
+        <input type="radio" name="filter" value="all">すべて
+        <input type="radio" name="filter" value="working">作業中
+        <input type="radio" name="filter" value="complete">完了
+    </div>
+    <div>
+        <table id="todoTable">
+            <thead>
+                <tr>
+<<<<<<< Updated upstream
+                    <td>ID</td><td>コメント</td><td>状態</td>
+=======
+                    <td>ID</td>
+                    <td>コメント</td>
+                    <td>状態</td>
+                    <td></td>
+>>>>>>> Stashed changes
+                </tr>
+            </thead>
+            <tbody id="TodoBody">
+            </tbody>
+        </table>
+    </div>
+    <h2>新規タスクの追加</h2>
+    <table>
+        <tr>
+            <td><input id="comment" type="text" /></td>
+            <td><input type="button" onclick="addTodo();" value="追加"></td>
+        </tr>
+    </table>
+</body>
+
+</html>
